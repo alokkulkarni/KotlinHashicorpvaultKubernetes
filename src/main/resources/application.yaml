@@ -1,0 +1,23 @@
+server:
+  port: 9090
+spring:
+  cloud:
+    vault:
+      enabled: true
+      uri: http://my-vault.vault:8200
+      kv:
+        enabled: true
+        application-name: webapp
+        backend: kv
+      authentication: kubernetes
+      kubernetes:
+        role: role-test
+
+  config:
+    import: vault://
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
